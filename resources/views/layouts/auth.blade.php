@@ -10,8 +10,8 @@
     <title>  {{ config('app.name') }} </title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('styleResource/bower_components/font-awesome/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('styleResource/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/login.css')}}">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
