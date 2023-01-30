@@ -58,8 +58,8 @@
             </div>
         </div>
     </div>
-    <link rel="stylesheet" href="{{ asset('styleResource/bower_components/jquery/dist/jquery.min.js')}}">
-    <link rel="stylesheet" href="{{ asset('styleResource/bower_components/bootstrap/dist/js/bootstrap.min.js')}}">
+    <link rel="stylesheet" href="{{ asset('js/jquery.min.js')}}">
+    <link rel="stylesheet" href="{{ asset('js/bootstrap.min.js')}}">
 
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
