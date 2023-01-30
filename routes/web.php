@@ -79,6 +79,9 @@ Route::group(['prefix' =>'manager/', 'middleware' => ['auth', 'is_manager']], fu
 // this is test
 
 Route::group(['middleware' => ['auth']], function(){
+
+    // all product
+    Route::get('admin/product/active', [App\Http\Controllers\Admin\ProductController::class, 'getAllProduct']);
   
     Route::get('sales', [HomeController::class, 'sales'])->name('sales');
     Route::get('all-invoices', [OrderController::class, 'getAllInvoice'])->name('user.allinvoices');

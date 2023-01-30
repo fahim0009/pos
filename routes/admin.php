@@ -63,7 +63,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
 
 
     // add product
-    Route::get('product/active', [ProductController::class, 'getAllProduct']);
     Route::get('add-product', [ProductController::class, 'addProduct'])->name('admin.addproduct');
     Route::get('product-edit/{id}', [ProductController::class, 'editProduct'])->name('admin.editproduct');
     Route::get('manage-product', [ProductController::class, 'view_manage_product'])->name('admin.manage_product');
@@ -74,7 +73,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
 
     // add category
     Route::get('/product-category', [CategoryController::class, 'view_product_category'])->name('view_product_category');
-    Route::get('/category-all', [CategoryController::class, 'get_all_category']);
+    // Route::get('/category-all', [CategoryController::class, 'get_all_category']);
     Route::post('/category', [CategoryController::class, 'save_category']);
     Route::get('/published-category/{id}', [CategoryController::class, 'published_category']);
     Route::get('/unpublished-category/{id}', [CategoryController::class, 'unpublished_category']);
@@ -83,7 +82,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
 
     // add brand
     Route::get('/product-brand', [BrandController::class, 'view_product_brand'])->name('view_product_brand');
-    Route::get('/brand-all', [BrandController::class, 'get_all_brand']);
+    // Route::get('/brand-all', [BrandController::class, 'get_all_brand']);
     Route::post('/brand', [BrandController::class, 'save_brand']);
     Route::get('/published-brand/{id}', [BrandController::class, 'published_brand']);
     Route::get('/unpublished-brand/{id}', [BrandController::class, 'unpublished_brand']);
@@ -91,7 +90,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
 
     // add group
     Route::get('/product-group', [GroupController::class, 'view_product_group'])->name('view_product_group');
-    Route::get('/group-all', [GroupController::class, 'get_all_group']);
+    // Route::get('/group-all', [GroupController::class, 'get_all_group']);
     Route::post('/group', [GroupController::class, 'save_group']);
     Route::get('/published-group/{id}', [GroupController::class, 'published_group']);
     Route::get('/unpublished-group/{id}', [GroupController::class, 'unpublished_group']);

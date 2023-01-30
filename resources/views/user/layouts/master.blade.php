@@ -369,7 +369,6 @@
    
 
     <script src="{{ asset('user/js/jquery-2.2.0.min.js')}}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="{{ asset('user/js/iconify.min.js')}}"></script>
     <script src="{{ asset('user/js/app.js')}}"></script>
@@ -405,6 +404,7 @@
         }, 3000);
     }
 </script>
+
 
 <script>
     $(document).ready(function () {
@@ -633,9 +633,15 @@
             }
         }
 </script>
+
+
+@yield('script')
+
+
+
   
 
-    @yield('script')
+    
 </body>
 
 </html>
