@@ -52,6 +52,8 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/create-admin', [UserController::class, 'save_admin'])->name('save_admin');
     Route::get('/manage-admin', [UserController::class, 'manage_admin'])->name('manage_admin');
     Route::post('/update-admin', [UserController::class, 'update_admin'])->name('update_admin');
+    Route::get('/super-admin', [UserController::class, 'super_admin'])->name('super_admin');
+    Route::post('/update-super-admin', [UserController::class, 'update_super_admin'])->name('update_super_admin');
 
     
     Route::get('/published-user/{id}', [UserController::class, 'published_user']);

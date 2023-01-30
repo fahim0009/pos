@@ -105,7 +105,7 @@
                         <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-success btn-flat dropdown-item"><i
+                                    <a href="{{ route('super_admin')}}" class="btn btn-success btn-flat dropdown-item"><i
                                                 class="fa fa-user-circle-o"></i> Profile</a>
                                 </div>
                                 <div class="pull-right">

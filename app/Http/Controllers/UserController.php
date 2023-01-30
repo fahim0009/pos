@@ -74,7 +74,9 @@ class UserController extends Controller
           $data = User::find($id);
           $data->name = $request['name'];
           $data->email = $request['email'];
-          $data->password = Hash::make($request['password']);
+          if ($request['password']) {
+            $data->password = Hash::make($request['password']);
+          }
           $data->branch_id = $request['branch_id'];
           $data->save();
            return redirect()->back()->with('success', 'User Updated Successfully'); 
@@ -88,7 +90,7 @@ class UserController extends Controller
 
     public function manage_admin()
     {
-      $users = User::where('id','!=','1')->where('type','=','1')->get();
+      $users = User::where('type','=','1')->get();
       // dd($users );
     	return view('admin.user.manageadmin', compact('users'));
     }
@@ -106,7 +108,9 @@ class UserController extends Controller
           $data = new User;
           $data->name = $request['name'];
           $data->email = $request['email'];
-          $data->password = Hash::make($request['password']);
+          if ($request['password']) {
+            $data->password = Hash::make($request['password']);
+          }
           $data->role_id = $request['role_id'];
           $data->branch_id = $branchIDs[0];
           $data->branchaccess = json_encode($branchIDs);
@@ -131,7 +135,9 @@ class UserController extends Controller
           $data = User::find($id);
           $data->name = $request['name'];
           $data->email = $request['email'];
-          $data->password = Hash::make($request['password']);
+          if ($request['password']) {
+            $data->password = Hash::make($request['password']);
+          }
           $data->role_id = $request['role_id'];
           $data->branch_id = $branchIDs[0];
           $data->branchaccess = json_encode($branchIDs);
@@ -151,6 +157,33 @@ class UserController extends Controller
           $data->branch_id = $request['branch_id'];
           $data->save();
           return redirect()->back()->with('success', 'Branch Switch Successfully'); 
+  	}
+
+    public function super_admin()
+    {
+    	return view('admin.user.super_admin');
+    }
+
+    public function update_super_admin(Request $request)
+    {
+      
+        $user_email = $request['email'];
+        $id = $request['userid'];
+        // dd($request['branch_id']);
+        if(User::where('email',$user_email)->where('id','!=',$id)->first())
+        {
+          return redirect()->back()->with('error', 'Duplicate'); 
+        }else{
+
+          $data = User::find(Auth::user()->id);
+          $data->name = $request['name'];
+          $data->email = $request['email'];
+          if ($request['password']) {
+            $data->password = Hash::make($request['password']);
+          }
+          $data->save();
+           return redirect()->back()->with('success', 'User Updated Successfully'); 
+        }
   	}
 
     
