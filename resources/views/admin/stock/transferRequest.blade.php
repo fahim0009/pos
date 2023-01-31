@@ -91,8 +91,8 @@ echo Session::put('info', '');
                     <th><i class="icon-sort"></i>ID</th>
                     <th><i class="icon-sort"></i>Product</th>
                     <th><i class="icon-sort"></i>Requested Date</th>
-                    <th class="text-center"><i class="icon-sort"></i>From Branch</th>
-                    <th class="text-center"><i class="icon-sort"></i>To Branch</th>
+                    <th class="text-center"><i class="icon-sort"></i>Request From Branch</th>
+                    <th class="text-center"><i class="icon-sort"></i>Request To Branch</th>
                     <th class="text-center"><i class="icon-sort"></i>Request Quantity</th>
                     <th class="text-center"><i class="icon-sort"></i>Request User Name</th>
                     <th class="text-center">Action</th>
@@ -175,7 +175,7 @@ echo Session::put('info', '');
                     
                     <div class="row">
                         <div class="col-sm-4 text-left">
-                            <label for="frombname">Transfer From Branch: </label>
+                            <label for="frombname">Request From Branch: </label>
                         </div>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="frombname" id="frombname" style="width: 100%;" readonly>
@@ -183,7 +183,7 @@ echo Session::put('info', '');
                     </div>
                     <div class="row">
                         <div class="col-sm-4 text-left">
-                            <label for="brnachToTransfer">Transfer To Branch: </label>
+                            <label for="brnachToTransfer">Request To Branch: </label>
                         </div>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="tobname" id="tobname" style="width: 100%;" readonly>
@@ -337,10 +337,12 @@ $('#transferModal').on('show.bs.modal', function (event) {
                 let data = {
                     productid: $('#productid').val(),
                     tranReqid: $('#tranReqid').val(),
-                    frombranchid: $('#frombranchid').val(),
-                    tobranchid: $('#tobranchid').val(),
+                    reqfrombranchid: $('#frombranchid').val(),
+                    reqtobranchid: $('#tobranchid').val(),
                     transferQty: $('#transferQty').val(),
                 };
+
+                console.log(data);
                 
                 $.ajax({
                     data: {

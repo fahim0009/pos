@@ -54,9 +54,15 @@ class StockController extends Controller
 
 
     public function managestock(){
-       $stocks = DB::table('stocks')
+
+    //    $stocks = DB::table('stocks')
+    //                 ->join('products', 'stocks.product_id', '=', 'products.id')
+    //                 ->select('stocks.*', 'products.productname','products.selling_price','products.unit','products.location')
+    //                 ->get();
+
+        $stocks = DB::table('stocks')
                     ->join('products', 'stocks.product_id', '=', 'products.id')
-                    ->select('stocks.*', 'products.productname','products.selling_price','products.unit','products.location')
+                    ->select('stocks.id','stocks.branch_id','stocks.product_id','stocks.quantity', 'products.productname','products.selling_price','products.unit','products.location')
                     ->get();
        $branches = Branch::where('status', '=', 1)->get();
         return view('admin.stock.ManageStock', compact('stocks', 'branches'));
