@@ -65,23 +65,13 @@ echo Session::put('info', '');
     }
 }
 </style>
-<!-- get stock alert limit quantity -->
-
-{{-- @php $stockAlertLimit = App\StockAlertLimit::first() @endphp
-@if($stockAlertLimit->status == 1)
-<input type="hidden" name="stockAlertLimit" id="stockAlertLimit" value="{{ $stockAlertLimit->quantity }}">
-@endif --}}
 
 <div class="row">
 <div class="conainer-fluid">
     <div class="col-md-12">
         <div class="overview">
-            <div class="alert alert-danger h4"> Manage Stock(From Warehouse) - Show all products purchase
-                details and transfer products to branches. Stock Alert Limit
-                {{-- - @if($stockAlertLimit->status == 1)({{ $stockAlertLimit->quantity }}
-                )@elseif($stockAlertLimit->status == 0)(<span style="color: yellow;">Inactive</span>)@endif, to
-                change please go to @can('setting-view') <a href="{{ url('/settings') }}">'Settings'</a> @endcan --}}
-                .
+            <div class="alert alert-danger h4"> Manage Stock(All Branch) - Show all products purchase
+                details and transfer products to branches.
             </div>
             <div id="ermsg" class="ermsg"></div>
         </div>
@@ -255,9 +245,7 @@ $(function () {
     $('.select2').select2();
 });
 $(document).ready(function () {
-   stockAlert();
    $('#stockTBL').on( 'page.dt', function () {
-       stockAlert();
    }).dataTable({
         "order": [[ 3, "asc" ]],
         dom: 'Bfrtip',
@@ -357,7 +345,7 @@ $('#transferModal').on('show.bs.modal', function (event) {
     modal.find('.modal-body #brnachToTransfer').select2("").trigger('change');
 });
 
-        var tranurl = "{{URL::to('/admin/save-stock-transfer')}}";
+        var tranurl = "{{URL::to('/admin/admin-stock-transfer')}}";
 
         function saveTransfer() {
             if ($('#brnachToTransfer').val() == "") {
@@ -377,7 +365,7 @@ $('#transferModal').on('show.bs.modal', function (event) {
                     brnachToTransfer: $('#brnachToTransfer').val(),
                     transferQty: $('#transferQty').val(),
                 };
-                
+                console.log(data);
                 $.ajax({
                     data: {
                         data: data
@@ -406,40 +394,7 @@ $('#transferModal').on('show.bs.modal', function (event) {
             }
         }
 
-// calculation start 
-// $("#transferQty").keyup(function(){
-//     var qtyInput = this.value;
-//     var totalstockqty = $("#stockQuantity").val();
-//     if (qtyInput > totalstockqty) {
-//         alert("There are not available quantity to transfer");
-//         $('#stockQuantity').val(totalstockqty);
-//         $('input[name=transferQty').val('');
-//     }
-// });
-//calculation end
 
-
-
-
-function stockAlert() {
-    var stckQ = document.getElementsByClassName("stockQuantity");
-    var limit = $('#stockAlertLimit').val();
-    //alert(limit);
-    for (var i = 0; i < stckQ.length; i++) {
-        var stq = stckQ[i].innerHTML;
-
-        if (Number(stq) <= Number(limit)) {
-            //alert("Your stock is below limit. Please check your stock!");
-            //document.getElementById('lowStock').play();
-            $(stckQ[i]).addClass("stock-alert");
-
-        } else {
-            //$(stckQ).removeClass( "alert alert-danger" );
-
-        }
-    }
-    
-}
 </script>
 
 @endsection

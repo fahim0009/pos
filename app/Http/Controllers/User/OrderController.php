@@ -367,9 +367,9 @@ class OrderController extends Controller
 
             }
             //stores the pdf for invoice
-            $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
-            $output = $pdf->output();
-            file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
+            // $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
+            // $output = $pdf->output();
+            // file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
 
 
             // email start
@@ -473,9 +473,9 @@ class OrderController extends Controller
 
             }
             //stores the pdf for invoice
-            $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
-            $output = $pdf->output();
-            file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
+            // $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
+            // $output = $pdf->output();
+            // file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
 
             // end
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Thank you for this order.</b></div>";
@@ -670,9 +670,9 @@ class OrderController extends Controller
             // }
             
 
-            $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
-            $output = $pdf->output();
-            file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
+            // $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
+            // $output = $pdf->output();
+            // file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
 
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Order updated successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message,'id'=>$order->id]);
@@ -773,8 +773,8 @@ class OrderController extends Controller
             // }
             
 
-            $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
-            $output = $pdf->output();
+            // $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
+            // $output = $pdf->output();
             // file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
 
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Quotation updated successfully.</b></div>";
@@ -891,8 +891,8 @@ class OrderController extends Controller
             // }
             
 
-            $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
-            $output = $pdf->output();
+            // $pdf = PDF::loadView('invoices.customer_invoice', compact('order','customerdtl'));
+            // $output = $pdf->output();
             // file_put_contents(public_path().'/invoices/'.'Order#'.$order->invoiceno.'.pdf', $output);
 
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Delivery Note updated successfully.</b></div>";
@@ -943,17 +943,17 @@ class OrderController extends Controller
                 $btn = '<div class="table-actions text-right">';
 
                         if (Auth::user()->type == '1' && in_array('13', json_decode(Auth::user()->role->permission)) || Auth::user()->type == '0' && in_array('13', json_decode(Auth::user()->role->permission))) {
-                            $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/sales-return/'.$invoice->id.'" class="btn btn-sm btn-success ms-1"><span title="Return">Return</span></a>';
+                            $btn .= '<a href="https://www.ezpos.tech/sales-return/'.$invoice->id.'" class="btn btn-sm btn-success ms-1"><span title="Return">Return</span></a>';
                         }
 
                         if (Auth::user()->type == '1' && in_array('4', json_decode(Auth::user()->role->permission)) || Auth::user()->type == '0' && in_array('4', json_decode(Auth::user()->role->permission))) {
-                            $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/sales-edit/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Edit">Edit</span></a>';
+                            $btn .= '<a href="https://www.ezpos.tech/sales-edit/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Edit">Edit</span></a>';
                         }
 
 
-                    $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/invoice/customer/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Download Invoice">Download</span></a>';
+                    $btn .= '<a href="https://www.ezpos.tech/invoice/customer/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Download Invoice">Download</span></a>';
 
-                    $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/invoice/print/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1 print-window"><span title="Print Invoice">Print</span></a>';
+                    $btn .= '<a href="https://www.ezpos.tech/invoice/print/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1 print-window"><span title="Print Invoice">Print</span></a>';
 
                     $btn .= '<a href="#" class="btn btn-sm btn-theme ms-1 viewThis" data-bs-toggle="modal" data-bs-target="#view" oid="'.$invoice->id.'" id="viewThis">View</a>';
 
@@ -993,12 +993,12 @@ class OrderController extends Controller
                 $btn = '<div class="table-actions text-right">';
 
                 if (Auth::user()->type == '1' && in_array('10', json_decode(Auth::user()->role->permission)) || Auth::user()->type == '0' && in_array('10', json_decode(Auth::user()->role->permission))) {
-                    $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/quotation-edit/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Edit">Edit</span></a>';
+                    $btn .= '<a href="https://www.ezpos.tech/quotation-edit/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Edit">Edit</span></a>';
                 }
 
-                $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/invoice/customer/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Download Invoice">Download</span></a>';
+                $btn .= '<a href="https://www.ezpos.tech/invoice/customer/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Download Invoice">Download</span></a>';
 
-                $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/invoice/print/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1 print-window"><span title="Print Invoice">Print</span></a>';
+                $btn .= '<a href="https://www.ezpos.tech/invoice/print/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1 print-window"><span title="Print Invoice">Print</span></a>';
 
                 $btn .= '<a href="#" class="btn btn-sm btn-theme ms-1 viewThis" data-bs-toggle="modal" data-bs-target="#view" oid="'.$invoice->id.'" id="viewThis">View</a>';
 
@@ -1039,12 +1039,12 @@ class OrderController extends Controller
                 $btn = '<div class="table-actions text-right">';
 
                 if (Auth::user()->type == '1' && in_array('12', json_decode(Auth::user()->role->permission)) || Auth::user()->type == '0' && in_array('12', json_decode(Auth::user()->role->permission))) {
-                    $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/delivery-note-edit/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Edit">Edit</span></a>';
+                    $btn .= '<a href="https://www.ezpos.tech/delivery-note-edit/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Edit">Edit</span></a>';
                 }
 
-                $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/invoice/customer/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Download Invoice">Download</span></a>';
+                $btn .= '<a href="https://www.ezpos.tech/invoice/customer/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1"><span title="Download Invoice">Download</span></a>';
 
-                $btn .= '<a href="https://www.pos.mentosoftware.co.uk/public/invoice/print/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1 print-window" target="blank"><span title="Print Invoice">Print</span></a>';
+                $btn .= '<a href="https://www.ezpos.tech/invoice/print/'.$invoice->id.'" class="btn btn-sm btn-theme ms-1 print-window" target="blank"><span title="Print Invoice">Print</span></a>';
 
                 $btn .= '<a href="#" class="btn btn-sm btn-theme ms-1 viewThis" data-bs-toggle="modal" data-bs-target="#view" oid="'.$invoice->id.'" id="viewThis">View</a>';
 

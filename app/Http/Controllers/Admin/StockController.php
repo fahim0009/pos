@@ -35,35 +35,29 @@ class StockController extends Controller
     }
 
     public function filter_product(Request $request)
-  {
-    
-      $products = Product::with('brand','category','size');
-      return Datatables::of($products)
-          ->addColumn('action', function ($product) {
-              $btn = '<div class="table-actions">';
-              if (Auth::user()) {
-                  $btn .= "<span class='btn btn-success btn-sm addThisStock' id='addThisStock' pid='$product->id' pname='$product->productname'> <i class='fa fa-arrow-right'></i> </span>";
-              }
-              $btn .= '</div>';
-              return $btn;
-          })
-          ->rawColumns(['action'])
-          ->make(true);
+    {
+        
+        $products = Product::with('brand','category','size');
+        return Datatables::of($products)
+            ->addColumn('action', function ($product) {
+                $btn = '<div class="table-actions">';
+                if (Auth::user()) {
+                    $btn .= "<span class='btn btn-success btn-sm addThisStock' id='addThisStock' pid='$product->id' pname='$product->productname'> <i class='fa fa-arrow-right'></i> </span>";
+                }
+                $btn .= '</div>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
 
-  }
+    }
 
 
     public function managestock(){
-        
-    //    $stocks = Stock::with('Products')->get();
-
        $stocks = DB::table('stocks')
                     ->join('products', 'stocks.product_id', '=', 'products.id')
                     ->select('stocks.*', 'products.productname','products.selling_price','products.unit','products.location')
                     ->get();
-
-
-
        $branches = Branch::where('status', '=', 1)->get();
         return view('admin.stock.ManageStock', compact('stocks', 'branches'));
     }
@@ -77,11 +71,7 @@ class StockController extends Controller
     // get purchased products
     public function getOldPurchase($id)
     {
-
         return $oldPurchases = ProductDetail::with('Products')->select('*', DB::raw('(purchaseprice * qty) AS total'), DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y (%h:%i:%s %p)") AS purchase_date'))->orderBy('created_at','DESC')->where('productid', $id)->get();
-        
-
-        //dd($oldPurchases);
     }
 
 
@@ -224,14 +214,9 @@ class StockController extends Controller
 
     }
 
-
-
-    
     public function purchaseUpdate(Request $request)
     {
         $pruchasehisIDs = $request->purchase_his_id;
-
-
         if(empty($request->invoiceno)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Invoice/Transaction No\" field..!</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -372,11 +357,6 @@ class StockController extends Controller
             }
 
     }
-
-
-
-
-
 
     // purchase return start
     public function purchaseReturnStore(Request $request)

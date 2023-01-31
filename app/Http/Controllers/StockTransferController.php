@@ -93,6 +93,65 @@ class StockTransferController extends Controller
     }
 
 
+    public function adminStockTransfer(Request $request)
+    {
+
+    	$productid = $request->data['productid'];
+    	$frombranchid = $request->data['frombranchid'];
+    	$tobranchid = $request->data['brnachToTransfer'];
+    	$transferQty = $request->data['transferQty'];
+    	$stockid = $request->data['stockid'];
+
+
+        if($frombranchid == $tobranchid){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>You Have Selected Same Branch..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+
+    	//transferring product
+    	$transfer = new StockTransfer();
+    	$transfer->product_id = $productid;
+    	$transfer->stocktransferqty = $transferQty;
+    	$transfer->from_branch_id = $frombranchid;
+    	$transfer->to_branch_id = $tobranchid;
+    	$transfer->status = "1";
+    	$transfer->created_by = Auth::user()->id;
+    	$transfer->save();
+        // from branch stock reduce start
+
+        $givenbranchstockid = Stock::where('branch_id',$tobranchid)->where('product_id',$productid)->first();
+        $frmbstock = Stock::find($stockid);
+        $frmbstock->quantity = $frmbstock->quantity - $transferQty;
+        $frmbstock->save();
+
+        // from branch stock reduce end
+
+        // to branch stock increase start
+
+        $rcvbranchstockid = Stock::where('branch_id',$tobranchid)->where('product_id',$productid)->first();
+        if ($rcvbranchstockid) {
+            $updateoldostock = Stock::find($rcvbranchstockid->id);
+            $updateoldostock->quantity = $updateoldostock->quantity + $transferQty;
+            $updateoldostock->save();
+        } else {
+            $newStock = new Stock;
+            $newStock->quantity = $transferQty;
+            $newStock->branch_id = $tobranchid;
+            $newStock->product_id = $productid;
+            $newStock->exp_date = $givenbranchstockid->exp_date;
+            $newStock->status = "1";
+            $newStock->created_by= Auth::user()->id;
+            $newStock->save();
+        }
+        // to branch stock increase end
+        
+        $message ="<div class='alert alert-success' style='color:white'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Stock Transfer Successfully.</b></div>";
+        return response()->json(['status'=> 300,'message'=>$message]);
+    }
+
+
 
     
 

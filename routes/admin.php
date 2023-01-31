@@ -40,7 +40,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/published-branch/{id}', [BranchController::class, 'published_branch']);
     Route::get('/unpublished-branch/{id}', [BranchController::class, 'unpublished_branch']);
     Route::post('/edit-branch/{id}', [BranchController::class, 'edit_branch']);
-
     
     //System User
     Route::get('/create-user', [UserController::class, 'create_user'])->name('create_user');
@@ -54,7 +53,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/update-admin', [UserController::class, 'update_admin'])->name('update_admin');
     Route::get('/super-admin', [UserController::class, 'super_admin'])->name('super_admin');
     Route::post('/update-super-admin', [UserController::class, 'update_super_admin'])->name('update_super_admin');
-
     
     Route::get('/published-user/{id}', [UserController::class, 'published_user']);
     Route::get('/unpublished-user/{id}', [UserController::class, 'unpublished_user']);
@@ -62,7 +60,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     // switch branch
     Route::get('/switch-branch', [UserController::class, 'switch_branch'])->name('switch_branch');
     Route::post('/switch-branch', [UserController::class, 'switch_branch_store'])->name('switch_branch_store');
-
 
     // add product
     Route::get('add-product', [ProductController::class, 'addProduct'])->name('admin.addproduct');
@@ -80,7 +77,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/published-category/{id}', [CategoryController::class, 'published_category']);
     Route::get('/unpublished-category/{id}', [CategoryController::class, 'unpublished_category']);
     Route::post('/edit-category/{id}', [CategoryController::class, 'edit_category']);
-    
 
     // add brand
     Route::get('/product-brand', [BrandController::class, 'view_product_brand'])->name('view_product_brand');
@@ -143,6 +139,8 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('stock-transfer-request', [StockTransferController::class, 'stock_transfer_request'])->name('admin.stock.transferrequest');
     Route::post('save-stock-transfer', [StockTransferController::class, 'saveStockTransfer'])->name('admin.stock.transfer');
     Route::get('stock-transfer-history', [StockController::class, 'stock_transfer_history'])->name('admin.stock.transferhistory');
+    // admin stock transfer
+    Route::post('admin-stock-transfer', [StockTransferController::class, 'adminStockTransfer'])->name('admin.stock.transfer');
 
     // product return
     Route::post('save-product-return', [StockController::class, 'saveStockReturn'])->name('admin.stock.return');
