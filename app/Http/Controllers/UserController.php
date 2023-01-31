@@ -78,6 +78,7 @@ class UserController extends Controller
             $data->password = Hash::make($request['password']);
           }
           $data->branch_id = $request['branch_id'];
+          $data->role_id = $request['role_id'];
           $data->save();
            return redirect()->back()->with('success', 'User Updated Successfully'); 
         }
