@@ -921,12 +921,18 @@ class OrderController extends Controller
 
         public function filterAllInvoice()
         {
-            if (Auth::user()->id == 1) {
-                $query = Order::where('sales_status','=','1')->get();
-            } else if(Auth::user()->type == 1 && Auth::user()->id != 1) {
-                $query = Order::where('sales_status','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+            // if (Auth::user()->id == 1) {
+            //     $query = Order::where('sales_status','=','1')->get();
+            // } else if(Auth::user()->type == 1 && Auth::user()->id != 1) {
+            //     $query = Order::where('sales_status','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+            // }else{
+            //     $query = Order::where('sales_status','=','1')->where('created_by',Auth::user()->id)->get();
+            // }
+
+            if(Auth::user()->type == 1) {
+                $query = Order::select('id','invoiceno','orderdate','customername','ref','due','net_total','partnoshow','created_at','branch_id')->where('sales_status','=','1')->where('branch_id', Auth::user()->branch_id)->get();
             }else{
-                $query = Order::where('sales_status','=','1')->where('created_by',Auth::user()->id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customername','ref','due','net_total','partnoshow','created_at','created_by')->where('sales_status','=','1')->where('created_by',Auth::user()->id)->get();
             }
 
 
@@ -972,12 +978,18 @@ class OrderController extends Controller
 
         public function filterAllQuotation()
         {
-            if (Auth::user()->id == 1) {
-                $query = Order::where('quotation','=','1')->get();
-            } else if(Auth::user()->type == 1 && Auth::user()->id != 1) {
-                $query = Order::where('quotation','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+            // if (Auth::user()->id == 1) {
+            //     $query = Order::where('quotation','=','1')->get();
+            // } else if(Auth::user()->type == 1 && Auth::user()->id != 1) {
+            //     $query = Order::where('quotation','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+            // }else{
+            //     $query = Order::where('quotation','=','1')->where('created_by',Auth::user()->id)->get();
+            // }
+
+            if(Auth::user()->type == 1) {
+                $query = Order::select('id','invoiceno','orderdate','customername','ref','due','net_total','partnoshow','created_at','branch_id')->where('quotation','=','1')->where('branch_id', Auth::user()->branch_id)->get();
             }else{
-                $query = Order::where('quotation','=','1')->where('created_by',Auth::user()->id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customername','ref','due','net_total','partnoshow','created_at','created_by')->where('quotation','=','1')->where('created_by',Auth::user()->id)->get();
             }
             
             return Datatables::of($query)
@@ -1018,12 +1030,18 @@ class OrderController extends Controller
 
         public function filterAllDeliveryNote()
         {
-            if (Auth::user()->id == 1) {
-                $query = Order::where('delivery_note','=','1')->get();
-            } else if(Auth::user()->type == 1 && Auth::user()->id != 1) {
-                $query = Order::where('delivery_note','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+            // if (Auth::user()->id == 1) {
+            //     $query = Order::where('delivery_note','=','1')->get();
+            // } else if(Auth::user()->type == 1 && Auth::user()->id != 1) {
+            //     $query = Order::where('delivery_note','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+            // }else{
+            //     $query = Order::where('delivery_note','=','1')->where('created_by',Auth::user()->id)->get();
+            // }
+
+            if(Auth::user()->type == 1) {
+                $query = Order::select('id','invoiceno','orderdate','customername','ref','due','net_total','partnoshow','created_at','branch_id')->where('delivery_note','=','1')->where('branch_id', Auth::user()->branch_id)->get();
             }else{
-                $query = Order::where('delivery_note','=','1')->where('created_by',Auth::user()->id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customername','ref','due','net_total','partnoshow','created_at','created_by')->where('delivery_note','=','1')->where('created_by',Auth::user()->id)->get();
             }
 
             return Datatables::of($query)
