@@ -56,14 +56,11 @@
                         <table style="width: 100%;">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
+                                    <td colspan="4" class="" style="border :0px solid #dee2e6 ;width:70%;">
                                         <div class="col-lg-5" style="flex: 2;">
                                             <p>Customer Name : {{ $customerdtl->name }} </p>
                                             <span style="padding-left: 118px">{{ $customerdtl->address }}</span> 
                                         </div>
-                                    </td>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6;width:55%;">
-                                        <div class="col-lg-5" style="flex: 1;"></div>
                                     </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
@@ -322,6 +319,7 @@
                                     </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
+                                            <span for="" style="padding-right: 30px">{{\App\Models\User::where('id', $order->created_by)->first()->name}}</span><br>
                                             Salesman Signature
                                         </div>
                                     </td>

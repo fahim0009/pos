@@ -20,19 +20,16 @@
                         <table style="width: 100%;">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
+                                    <td colspan="4" class="" style="border :0px solid #dee2e6 ;width:80%;">
                                         <div class="col-lg-5" style="flex: 2;">
                                             <p>Customer Name : {{ $customerdtl->name }} </p>
                                             <span style="padding-left: 118px">{{ $customerdtl->address }}</span> 
                                         </div>
                                     </td>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6;width:55%;">
-                                        <div class="col-lg-5" style="flex: 1;"></div>
-                                    </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">TRN: 100474976600003</h5>
-                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">INV NO: {{ $order->invoiceno }}</h5>
+                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">INV NO: {{ $order->invoiceno }}3</h5>
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">QTN No: 000{{ $order->id }}</h5>
                                         </div>
                                     </td>

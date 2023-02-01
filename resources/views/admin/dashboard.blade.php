@@ -75,7 +75,7 @@
                     <div class="col-md-12">
                         <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
                             
-                            <h5 class="btn btn-success btn-sm center-block px-2"> {{ \App\Models\Order::where('quotation','=','1')->where('delivery_note',date('Y-m-d'))->count() }}</h5>
+                            <h5 class="btn btn-success btn-sm center-block px-2"> {{ \App\Models\Order::where('delivery_note','=','1')->where('orderdate',date('Y-m-d'))->count() }}</h5>
                         </div>
                     </div>
                 </div>
