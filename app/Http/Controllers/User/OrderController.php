@@ -930,9 +930,9 @@ class OrderController extends Controller
             // }
 
             if(Auth::user()->type == 1) {
-                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','net_total','partnoshow','created_at','branch_id')->where('sales_status','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','dn_no','net_total','partnoshow','created_at','branch_id')->where('sales_status','=','1')->where('branch_id', Auth::user()->branch_id)->get();
             }else{
-                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','net_total','partnoshow','created_at','created_by')->where('sales_status','=','1')->where('created_by',Auth::user()->id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','dn_no','net_total','partnoshow','created_at','created_by')->where('sales_status','=','1')->where('created_by',Auth::user()->id)->get();
             }
 
 
@@ -987,9 +987,9 @@ class OrderController extends Controller
             // }
 
             if(Auth::user()->type == 1) {
-                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','net_total','partnoshow','created_at','branch_id')->where('quotation','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','dn_no','net_total','partnoshow','created_at','branch_id')->where('quotation','=','1')->where('branch_id', Auth::user()->branch_id)->get();
             }else{
-                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','net_total','partnoshow','created_at','created_by')->where('quotation','=','1')->where('created_by',Auth::user()->id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','dn_no','net_total','partnoshow','created_at','created_by')->where('quotation','=','1')->where('created_by',Auth::user()->id)->get();
             }
             
             return Datatables::of($query)
@@ -1039,9 +1039,9 @@ class OrderController extends Controller
             // }
 
             if(Auth::user()->type == 1) {
-                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','net_total','partnoshow','created_at','branch_id')->where('delivery_note','=','1')->where('branch_id', Auth::user()->branch_id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','qn_no','net_total','partnoshow','created_at','branch_id')->where('delivery_note','=','1')->where('branch_id', Auth::user()->branch_id)->get();
             }else{
-                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','net_total','partnoshow','created_at','created_by')->where('delivery_note','=','1')->where('created_by',Auth::user()->id)->get();
+                $query = Order::select('id','invoiceno','orderdate','customer_id','ref','due','qn_no','net_total','partnoshow','created_at','created_by')->where('delivery_note','=','1')->where('created_by',Auth::user()->id)->get();
             }
 
             return Datatables::of($query)
