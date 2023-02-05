@@ -70,7 +70,11 @@
     <div class="col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading"><i class="fa fa-navicon"></i> Switch Branch</div>
-
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        {!! \Session::get('success') !!}
+                    </div>
+                @endif
             <div class="panel-body">
 
                 
