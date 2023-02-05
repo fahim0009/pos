@@ -74,29 +74,30 @@
             <div class="panel-body">
 
                 
-                
+                <form class="form-horizontal" action="{{ route('switch_branch_store')}}" method="POST">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="label label-primary">Branch</label>
+                            <select class="form-control select2" name="branch_id">
+                                <option value="">Select Branch..</option>
+                                    @php
+                                        $branchNames = \App\Models\Branch::where('status','1')->get();
+                                    @endphp
+                                    @foreach ($branchNames as $branchName)
+                                        <option value="{{$branchName->id}}">{{$branchName->name}}</option>
+                                    @endforeach
+                                    
+                            </select>
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-8">
-                        <label class="label label-primary">Branch</label>
-                        <select class="form-control select2" name="branch_id">
-                            <option value="">Select Branch..</option>
-                                @php
-                                    $branchNames = \App\Models\Branch::where('status','1')->get();
-                                @endphp
-                                @foreach ($branchNames as $branchName)
-                                    <option value="{{$branchName->id}}">{{$branchName->name}}</option>
-                                @endforeach
-                                
-                        </select>
+                        <div class="col-md-4">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-sm block">Switch</button>
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-sm block">Switch</button>
-                    </div>
-                </div>
-
+                </form>
             </div>
         </div>
 
