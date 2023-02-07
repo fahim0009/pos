@@ -12,7 +12,7 @@
         }
 </style>
 
-@if (Auth::user()->id != 1 || Auth::user()->id != 15)
+@if (Auth::user()->id != 1 && Auth::user()->id != 15)
     
 <div class="row">
     <div class="col-md-6">
