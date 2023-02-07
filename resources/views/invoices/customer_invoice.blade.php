@@ -76,7 +76,8 @@
                                     <td style="border :0px solid #ffffff ;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">INV NO: {{ $order->invoiceno }}</h5>
-                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">D/N NO: {{ $order->dn_no }}</h5>
+                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Q/N NO: {{ $order->qn_no }}</h5>
+                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">D/N NO: {{ $order->id }}</h5>
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Date: {{ $order->orderdate }}</h5>
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Ref: {{ $order->ref }}</h5>
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Page: </h5>
@@ -127,7 +128,7 @@
                                                 <div class="card border box-round" style="padding: 5px" >
                                                     <span><b>Invoice No :</b> {{ $order->invoiceno }}</span><br>
                                                     <span><b>Invoice Date:</b> {{ $order->orderdate }}</span><br>
-                                                    <span><b>DO No:</b></span><br>
+                                                    <span><b>DO No:</b>{{ $order->dn_no }}</span><br>
                                                     <span><b>LPO No:</b></span><br>
                                                     <span><b>Salesman:</b> {{\App\Models\User::where('id', $order->created_by)->first()->name}}</span>
                                                 </div>

@@ -289,8 +289,6 @@
 <script>
     $(document).ready(function () {
 
-        
-        
         $("#editDiv").hide();
         $("#FormCloseBtn").click(function(){
             $("#editDiv").hide();
@@ -300,9 +298,6 @@
         // header for csrf-token is must in laravel
         $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
         // 
-
-
-
 
         // return stock
         $("#userTBL").on('click','#editThis', function(){
@@ -317,11 +312,12 @@
             console.log(branchaccess);
             $('#userid').val(id);
             $('#role_id').val(role_id);
-            $('#branch_id').val(branch_id);
+            // $('#branch_id').val(branchaccess);
             $('#name').val(name);
             $('#email').val(email);
-            $("select[name=branch_id]").val(branchaccess);
 
+            
+            
             });
         // return stock end
 
