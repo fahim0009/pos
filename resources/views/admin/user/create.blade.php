@@ -54,6 +54,18 @@
                                         </div>
 
                                         <div class="row mb-3 form-group">
+                                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('User Name') }}</label>
+                                            <div class="col-md-6">
+                                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                                @error('username')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3 form-group">
                                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                                             <div class="col-md-6">
@@ -68,15 +80,32 @@
                                         </div>
 
                                         <div class="row mb-3 form-group">
+                                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Phone Number') }}</label>
+                                            <div class="col-md-6">
+                                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                                @error('phone')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3 form-group">
                                             <label for="branch_id" class="col-md-4 col-form-label text-md-end">{{ __('Branch') }}</label>
 
                                             <div class="col-md-6">
-                                                <select name="branch_id" id="branch_id" class="form-control">
+                                                <select name="branch_id" id="branch_id" class="form-control" value="{{ old('branch_id') }}">
                                                     <option value="">Select</option>
                                                     @foreach (\App\Models\Branch::where('status','1')->get(); as $branch)
                                                     <option value="{{$branch->id}}">{{$branch->name}}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('branch_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -84,12 +113,17 @@
                                             <label for="role_id" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                                             <div class="col-md-6">
-                                                <select name="role_id" id="role_id" class="form-control">
+                                                <select name="role_id" id="role_id" class="form-control"  value="{{ old('role_id') }}">
                                                     <option value="">Select</option>
                                                     @foreach (\App\Models\Role::all(); as $role)
                                                     <option value="{{$role->id}}">{{$role->name}}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('role_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -112,6 +146,11 @@
 
                                             <div class="col-md-6">
                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                @error('password_confirmation')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 

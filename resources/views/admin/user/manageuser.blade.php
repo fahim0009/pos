@@ -50,6 +50,8 @@
                         @endslot
                         @slot('head')
                             <th>Name</th>
+                            <th>User Name</th>
+                            <th>Phone</th>
                             <th>Email</th>
                             <th>Branch</th>
                             <th>Role</th>
@@ -61,6 +63,8 @@
                             @foreach ($users as $data)
                                 <tr>
                                     <td>{{$data->name}}</td>
+                                    <td>{{$data->username}}</td>
+                                    <td>{{$data->phone}}</td>
                                     <td>{{$data->email}}</td>
                                     <td>{{ \App\Models\Branch::where('id',$data->branch_id)->first()->name  }}</td>
                                     <td>{{$data->role->name}}</td>
@@ -73,7 +77,7 @@
                                         </td>
                                     @endif
                                     <td>
-                                        <span class="btn btn-success btn-sm editThis" id="editThis" vid="{{$data->id}}" name="{{$data->name}}" email="{{$data->email}}" branch_id="{{$data->branch_id}}" role_id="{{$data->role_id}}"> <i class='fa fa-pencil'></i> Edit </span>
+                                        <span class="btn btn-success btn-sm editThis" id="editThis" vid="{{$data->id}}" name="{{$data->name}}" username="{{$data->username}}" phone="{{$data->phone}}" email="{{$data->email}}" branch_id="{{$data->branch_id}}" role_id="{{$data->role_id}}"> <i class='fa fa-pencil'></i> Edit </span>
                                     </td>
                                 </tr>
                             @endforeach
@@ -99,25 +103,48 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-3 control-label">Name<span class="text-danger">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="name" class="form-control" id="name" required>
-                                    <input type="hidden" name="userid" class="form-control" id="userid" required>
+                                    <input type="text" name="name" class="form-control" id="name"  value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input type="hidden" name="userid" class="form-control" id="userid"  value="{{ old('userid') }}" required autocomplete="userid" autofocus>
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback text-danger" role="alert">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-3 control-label">User Name<span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="username" class="form-control" id="username"  value="{{ old('username') }}" required autocomplete="username">
+                                    @if ($errors->has('username'))
+                                        <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" name="email" class="form-control" id="email" required>
+                                    <input type="email" name="email" class="form-control" id="email"  value="{{ old('email') }}" required autocomplete="email">
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
-                                @if ($errors->has('vendoremail'))
-                                    <span class="invalid-feedback text-danger" role="alert">
-                                    <strong>{{ $errors->first('vendoremail') }}</strong>
-                                    </span>
-                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-3 control-label">Phone<span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="phone" class="form-control" id="phone"  value="{{ old('phone') }}" required autocomplete="phone">
+                                    @if ($errors->has('phone'))
+                                        <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
 
                             
@@ -149,6 +176,11 @@
                                 <label for="password" class="col-sm-3 control-label">Password<span class="text-danger">*</span></label>
                                 <div class="col-sm-9">
                                     <input type="password" name="password" class="form-control" id="password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -293,7 +325,7 @@
 
         
         
-        $("#editDiv").hide();
+        // $("#editDiv").hide();
         $("#FormCloseBtn").click(function(){
             $("#editDiv").hide();
         });
@@ -315,12 +347,16 @@
             role_id = $(this).attr('role_id');
             name = $(this).attr('name');
             email = $(this).attr('email');
+            username = $(this).attr('username');
+            phone = $(this).attr('phone');
 
             $('#userid').val(id);
             $('#branch_id').val(branch_id);
             $('#role_id').val(role_id);
             $('#name').val(name);
             $('#email').val(email);
+            $('#username').val(username);
+            $('#phone').val(phone);
                 
             });
         // return stock end

@@ -130,7 +130,7 @@
                                                     <span><b>Invoice Date:</b> {{ $order->orderdate }}</span><br>
                                                     <span><b>DO No:</b>{{ $order->dn_no }}</span><br>
                                                     <span><b>LPO No:</b></span><br>
-                                                    <span><b>Salesman:</b> {{\App\Models\User::where('id', $order->created_by)->first()->name}}</span>
+                                                    <span><b>Salesman:</b> {{\App\Models\User::where('id', $order->created_by)->first()->name}}-{{\App\Models\User::where('id', $order->created_by)->first()->phone}}</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -284,6 +284,7 @@
                                     </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
+                                            <span for="" style="padding-right: 30px">{{\App\Models\User::where('id', $order->created_by)->first()->name}}</span><br>
                                             Salesman Signature
                                         </div>
                                     </td>
@@ -302,6 +303,7 @@
                                     </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
+                                            <span for="" style="padding-right: 30px">{{\App\Models\User::where('id', $order->created_by)->first()->name}}</span><br>
                                             Salesman Signature
                                         </div>
                                     </td>

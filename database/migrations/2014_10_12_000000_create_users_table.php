@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -24,6 +25,10 @@ return new class extends Migration
             $table->foreign('branch_id')->references('id')->on('branches');
             $table->bigInteger('role_id')->unsigned()->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->longText('branchaccess')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->boolean('status')->default(1);
             /* Users: 0=>User, 1=>Admin, 2=>Manager */
             $table->rememberToken();
             $table->timestamps();
