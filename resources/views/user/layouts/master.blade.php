@@ -138,34 +138,30 @@
                 </div>
                 <div class="modal-body">
                     <div class="row gx-2">
+                        <div>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <p>{{ Session::get('success') }}</p>
+                                </div>
+                                {{ Session::forget('success') }}
+                            @endif
+                            @if (Session::has('warning'))
+                                <div class="alert alert-warning">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                    <p>{{ Session::get('warning') }}</p>
+                                </div>
+                                {{ Session::forget('warning') }}
+                            @endif
+                        </div>
                         <div class="col-lg-8 ">
                             <div class="box">
                                 <div class="row">
                                     <p  class="modal-box-title" >Add New Product</p>
                                     
-                                    <div>
-                                        @if (Session::has('success'))
-                                            <div class="alert alert-success">
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                                <p>{{ Session::get('success') }}</p>
-                                            </div>
-                                            {{ Session::forget('success') }}
-                                        @endif
-                                        @if (Session::has('warning'))
-                                            <div class="alert alert-warning">
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                                <p>{{ Session::get('warning') }}</p>
-                                            </div>
-                                            {{ Session::forget('warning') }}
-                                        @endif
-                                    </div>
-                                    
                                     <form action="{{ route('admin.storeproduct') }}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                     <div class="row">
-
-                                        
-
                                             <div class="col-lg-6 ">
                                                 <div class="mb-3 row">
                                                     <label for="part_no" class="col-sm-3 col-form-label">Part No</label>

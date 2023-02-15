@@ -7,6 +7,7 @@ use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\ProductController;
   
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     // all product
     Route::get('admin/product/active', [App\Http\Controllers\Admin\ProductController::class, 'getAllProduct']);
+    Route::post('admin/product', [ProductController::class, 'storeProduct'])->name('admin.storeproduct');
   
     Route::get('sales', [HomeController::class, 'sales'])->name('sales');
     Route::get('all-invoices', [OrderController::class, 'getAllInvoice'])->name('user.allinvoices');

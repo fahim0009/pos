@@ -65,7 +65,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('add-product', [ProductController::class, 'addProduct'])->name('admin.addproduct');
     Route::get('product-edit/{id}', [ProductController::class, 'editProduct'])->name('admin.editproduct');
     Route::get('manage-product', [ProductController::class, 'view_manage_product'])->name('admin.manage_product');
-    Route::post('product', [ProductController::class, 'storeProduct'])->name('admin.storeproduct');
     Route::get('filter-all', [ProductController::class, 'filter_product'])->name('admin.filter_product');
     Route::get('product-info/{product}', [ProductController::class, 'get_product']);
     Route::post('update-product-details', [ProductController::class, 'update_product_details']);
