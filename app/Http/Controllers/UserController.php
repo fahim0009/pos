@@ -50,12 +50,6 @@ class UserController extends Controller
             'username' => 'required|unique:users,username',
             'password' => [
               'required',
-              Password::min(8)
-                  ->letters()
-                  ->mixedCase()
-                  ->numbers()
-                  ->symbols()
-                  ->uncompromised()
           ],
           'password_confirmation' => 'required|same:password'
         ]);
@@ -98,6 +92,10 @@ class UserController extends Controller
                               'required',
                               'unique:users,email,'.$id
                           ],
+              'branch_id' => [
+                            'required'
+                        ],
+              'role_id' => [ 'required' ],
               'username' => [
                                 'required',
                                 'unique:users,username,'.$id
@@ -118,6 +116,11 @@ class UserController extends Controller
                               'required',
                               'unique:users,email,'.$id
                           ],
+              'branch_id' => [
+                            'required'
+                        ],
+                        
+              'role_id' => [ 'required' ],
               'username' => [
                                 'required',
                                 'unique:users,username,'.$id
@@ -167,16 +170,12 @@ class UserController extends Controller
        $request->validate([
             'email' => 'required|unique:users,email',
             'username' => 'required|unique:users,username',
+            'branch_id' => 'required',
+            'role_id' => 'required',
             'password' => [
-              'required',
-              Password::min(8)
-                  ->letters()
-                  ->mixedCase()
-                  ->numbers()
-                  ->symbols()
-                  ->uncompromised()
-          ],
-          'password_confirmation' => 'required|same:password'
+              'required'
+            ],
+            'password_confirmation' => 'required|same:password'
         ]);
 
 
@@ -226,6 +225,8 @@ class UserController extends Controller
                                 'required',
                                 'unique:users,username,'.$id
                             ],
+              'branch_id' => [ 'required' ],
+              'role_id' => [ 'required' ],
               'password' => [
                                 'required',
                                 Password::min(8)
@@ -242,6 +243,8 @@ class UserController extends Controller
                               'required',
                               'unique:users,email,'.$id
                           ],
+              'branch_id' => [ 'required' ],
+              'role_id' => [ 'required' ],
               'username' => [
                                 'required',
                                 'unique:users,username,'.$id

@@ -405,6 +405,7 @@
 <script>
     $(document).ready(function () {
         $('.select2').select2();
+        $('.alternativep').select2();
     });
 
     var getcaturl = "{{URL::to('/admin/category-all')}}";

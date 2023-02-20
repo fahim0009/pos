@@ -1128,6 +1128,9 @@
                             if (product.part_no) {
                                 namePartno += ` (${product.part_no})`;
                             }
+                            if (product.replacement) {
+                                namePartno += ` (${product.replacement})`;
+                            }
                             $('#product').append($('<option>', {
                                 value: product.id,
                                 text: namePartno

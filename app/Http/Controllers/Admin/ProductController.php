@@ -36,10 +36,12 @@ class ProductController extends Controller
           return back();
     }
 
-      $check = Product::where('part_no', $request->part_no)->first();
+    $check = Product::where('part_no', $request->part_no)->first();
     if ($check) {
-        Session::put('warning', 'This Part no Already Exist !');
-        return back();
+        if ($check->category_id == $request->pcategoryselect) {
+            Session::put('warning', 'This Part no Already Exist !');
+            return back();
+        }
     }
 
     $image = $request->image;

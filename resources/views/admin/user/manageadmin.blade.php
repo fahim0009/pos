@@ -3,6 +3,7 @@
 @extends('admin.layouts.master')
 @section('content')
 
+
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     @if (session('message'))
@@ -150,10 +151,19 @@
                                 <label for="branch_id" class="col-sm-3 control-label">Branch</label>
                                 <div class="col-sm-9">
                                     <select name="branch_id[]" id="branch_id" class="form-control" multiple>
-                                        @foreach (\App\Models\Branch::where('status','1')->get(); as $branch)
-                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                        @foreach (\App\Models\Branch::where('status','1')->get() as $branch)
+                                        @if (old('branch_id') == $branch->id)
+                                            <option value="{{$branch->id}}" selected>{{$branch->name}}</option>
+                                        @else
+                                            <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                        @endif
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('branch_id'))
+                                        <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -162,10 +172,20 @@
                                 <div class="col-sm-9">
                                     <select name="role_id" id="role_id" class="form-control">
                                         <option value="">Select</option>
-                                        @foreach (\App\Models\Role::all(); as $role)
-                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                        @foreach (\App\Models\Role::all() as $role)
+                                        @if (old('role_id') == $role->id)
+                                            <option value="{{$role->id}}" selected>{{$role->name}}</option>
+                                        @else
+                                            <option value="{{$role->id}}">{{$role->name}}</option>
+                                        @endif
                                         @endforeach
                                     </select>
+                                    
+                                    @if ($errors->has('role_id'))
+                                        <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
