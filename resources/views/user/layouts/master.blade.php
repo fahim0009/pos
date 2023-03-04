@@ -14,6 +14,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('user/css/app.css')}}">
     <!-- datatables -->
@@ -211,10 +213,21 @@
                                                     </div>
                                                 </div>
 
+                                                {{-- <div class="mb-3 row">
+                                                    <label for="" class="col-sm-3 col-form-label">Alternative Product</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="alternative[]" id="alternative" class="form-control select2" multiple>
+                                                            @foreach (\App\Models\Product::all() as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->productname }} - {{ $item->part_no }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div> --}}
+
                                                 <div class="mb-3 row">
                                                     <label for="" class="col-sm-3 col-form-label">Alternative Product</label>
                                                     <div class="col-sm-8">
-                                                        <select name="alternative[]" id="alternative" class="form-control" multiple>
+                                                        <select name="alternative[]" id="alternative" class="form-control select2" multiple>
                                                             @foreach (\App\Models\Product::all() as $item)
                                                             <option value="{{ $item->id }}">{{ $item->productname }} - {{ $item->part_no }}</option>
                                                             @endforeach
@@ -368,7 +381,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="{{ asset('user/js/iconify.min.js')}}"></script>
     <script src="{{ asset('user/js/app.js')}}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     
     
 
@@ -405,8 +420,13 @@
 <script>
     $(document).ready(function () {
         $('.select2').select2();
-        $('.alternativep').select2();
+        // $('.alternativep').select2();
+        $(".alternativep").select2({
+        maximumSelectionLength: 2
+        });
     });
+
+    
 
     var getcaturl = "{{URL::to('/admin/category-all')}}";
     var getbrdurl = "{{URL::to('/admin/brand-all')}}";

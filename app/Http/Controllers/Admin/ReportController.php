@@ -146,12 +146,34 @@ class ReportController extends Controller
 
     public function getStockTransferReport(Request $request)
     {
-        
         $data = StockTransfer::
                 when($request->input('fromdate'), function ($query) use ($request) {
                     $query->whereBetween('created_at', [$request->input('fromdate'), $request->input('todate').' 23:59:59']);
                 })
                 ->get();
         return view("admin.report.stocktransfer",compact('data'));
+    }
+
+    public function getProfitLossReport(Request $request)
+    {
+        
+        $sales = Order::with('orderdetails')->where('sales_status','=','1')
+                ->when($request->input('fromdate'), function ($query) use ($request) {
+                    $query->whereBetween('orderdate', [$request->input('fromdate'), $request->input('todate')]);
+                })
+                ->when($request->input('branch_id'), function ($query) use ($request) {
+                    $query->where("branch_id",$request->input('branch_id'));
+                })
+                ->when($request->input('salestype'), function ($query) use ($request) {
+                    $query->where("salestype",$request->input('salestype'));
+                })
+                ->when($request->input('customer_id'), function ($query) use ($request) {
+                    $query->where("customer_id",$request->input('customer_id'));
+                })
+        ->get();
+
+        $cashsales = Order::with('orderdetails')->where('salestype','=','Cash')->where('sales_status','=','1')->sum('net_total');
+        $creditsales = Order::with('orderdetails')->where('salestype','=','Credit')->where('sales_status','=','1')->sum('net_total');
+        return view("admin.report.profitlossreport",compact('sales','cashsales','creditsales'));
     }
 }

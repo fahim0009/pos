@@ -48,6 +48,7 @@
                             <a href="{{ route('purchaseReport')}}" class="btn btn-success btn-sm center-block px-2">Purchase </a>
                             <a href="{{ route('purchaseReturnReport')}}" class="btn btn-success btn-sm center-block px-2">Purchase Return </a>
                             <a href="{{ route('stockTransferReport')}}" class="btn btn-success btn-sm center-block px-2">Stock Transfer </a>
+                            <a href="{{ route('profitLossReport')}}" class="btn btn-success btn-sm center-block px-2">Profit and loss Statement </a>
                         </div>
                     </div>
                 </div>

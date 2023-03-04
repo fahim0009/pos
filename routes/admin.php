@@ -193,6 +193,9 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
 
     Route::get('stock-transfer-report', [ReportController::class, 'getStockTransferReport'])->name('stockTransferReport');
     Route::post('stock-transfer-report', [ReportController::class, 'getStockTransferReport'])->name('stockTransferReport.search');
+    
+    Route::get('profit-loss-report', [ReportController::class, 'getProfitLossReport'])->name('profitLossReport');
+    Route::post('profit-loss-report', [ReportController::class, 'getProfitLossReport'])->name('profitLossReport.search');
 
     
 
