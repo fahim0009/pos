@@ -172,8 +172,18 @@ class ReportController extends Controller
                 })
         ->get();
 
+        if ($request->input('fromdate')) {
+            $from = $request->input('fromdate');
+            $to = $request->input('todate');
+        } else {
+            $from = "";
+            $to = "";
+        }
+        
+        
+
         $cashsales = Order::with('orderdetails')->where('salestype','=','Cash')->where('sales_status','=','1')->sum('net_total');
         $creditsales = Order::with('orderdetails')->where('salestype','=','Credit')->where('sales_status','=','1')->sum('net_total');
-        return view("admin.report.profitlossreport",compact('sales','cashsales','creditsales'));
+        return view("admin.report.profitlossreport",compact('sales','cashsales','creditsales','from','to'));
     }
 }

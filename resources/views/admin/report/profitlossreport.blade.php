@@ -3,7 +3,7 @@
 @section('content')
 
 <h2 class="text-blue">
-    <i class="fa fa-money text-green" aria-hidden="true"></i> Sales Report
+    <i class="fa fa-money text-green" aria-hidden="true"></i> P/L Report
     <small class="text-aqua">All Information</small>
 </h2>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -47,9 +47,22 @@ echo Session::put('message', '');
         </div>
     </form>
 </div>
+
+@if (!empty($from))
+<h2 class="text-blue text-center">
+    P/L Report
+    <br>
+   <small class="text-aqua">From {{$from}} to {{ $to }}</small>
+</h2>
+@else
+
+@endif
+
+
+
 <div class="row">
 
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading"><i class="fa fa-navicon"></i> Summery</div>
             <p class="label label-info pull-right">
