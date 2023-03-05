@@ -94,8 +94,10 @@ echo Session::put('message', '');
                                 @foreach ($sales as  $sale)
                                     @foreach ($sale->orderdetails as $item)
                                         @php
-                                            $purchase = \App\Models\PurchaseHistory::where('product_id',$item->product_id)->first()->purchase_price;
-                                            $profit = $item->sellingprice - $purchase;
+                                            $purchase = \App\Models\PurchaseHistory::where('product_id',$item->product_id)->first();
+                                            if (isset($purchase->purchase_price)) {
+                                                $profit = $item->sellingprice - $purchase->purchase_price;
+                                            }
                                         @endphp
                                         <tr>
                                             <td>{{ $item->product->part_no}}</td>
@@ -104,10 +106,10 @@ echo Session::put('message', '');
                                             <td>{{ $item->invoiceno }}</td>
                                             <td style="text-align: center">{{ $sale->orderdate }}</td>
                                             <td style="text-align:center">{{ $item->quantity}}</td>
-                                            <td>@if (isset($purchase)) {{$purchase}} @endif</td>
+                                            <td>@if (isset($purchase)) {{$purchase->purchase_price}} @endif</td>
                                             <td>{{ $item->sellingprice}}</td>
-                                            <td style="text-align:right">@if (isset($purchase)) {{$item->sellingprice - $purchase}} @endif</td>
-                                            <td style="text-align:right">@if (isset($purchase)) {{($profit/100)*$profit}}% @if ($profit < 0) Loss @else Profit
+                                            <td style="text-align:right">@if (isset($purchase->purchase_price)) {{$item->sellingprice - $purchase->purchase_price}} @endif</td>
+                                            <td style="text-align:right">@if (isset($purchase->purchase_price)) {{($profit/100)*$profit}}% @if ($profit < 0) Loss @else Profit
                                                 
                                             @endif @endif</td>
                                         </tr>
