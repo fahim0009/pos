@@ -51,6 +51,7 @@ class ProductController extends Controller
     $product->part_no = $request->part_no;
     $product->category_id = $request->pcategoryselect;
     $product->brand_id = $request->pbrandselect;
+    $product->branch_id = Auth::user()->branch_id;
     $product->group_id = $request->group_id;
     $product->unit = $request->unit;
     $product->model = $request->model;
@@ -256,7 +257,7 @@ class ProductController extends Controller
     }
 
     public function getAllProduct(){
-        $product = Product::all();
+        $product = Product::where('branch_id', Auth::user()->branch_id)->get();
         return $product;
     }
 

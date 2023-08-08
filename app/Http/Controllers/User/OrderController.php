@@ -902,8 +902,6 @@ class OrderController extends Controller
     }
     // delivery note update end
 
-
-
     public function getcustomer(Request $request)
     {
         $customerDtl = Customer::where('id', '=', $request->customer_id)->first();

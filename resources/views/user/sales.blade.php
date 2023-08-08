@@ -737,7 +737,7 @@
             $('#due').val(grand_total.toFixed(0));
             // $('#ttm').html("<input type='hidden' class='ttm' name='ttm' value="+grand_total+">"); 
             net_total();          
-        })
+        });
         //Change Quantity end here    
 
        var orderurl = "{{URL::to('/order-store')}}";
